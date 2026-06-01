@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sistema de Gestão de Patrimônio</title>
+<style>
+:root{--bg:#f5f7fb;--surface:#fff;--surface2:#f8fafc;--text:#102033;--muted:#64748b;--line:#dbe3ef;--blue:#1238a6;--blue2:#2563eb;--green:#139750;--red:#d91f2b;--orange:#f97316;--yellow:#facc15;--purple:#7c3aed;--shadow:0 10px 25px rgba(15,23,42,.08);--radius:16px}*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:grid;grid-template-columns:280px 1fr;min-height:100vh}.sidebar{background:#0f1f4b;color:white;padding:22px;position:sticky;top:0;height:100vh;overflow:auto}.brand{font-size:20px;font-weight:800;line-height:1.15;margin-bottom:18px}.brand small{display:block;font-weight:500;color:#cbd5e1;margin-top:6px}.nav{display:flex;flex-direction:column;gap:8px}.nav button{border:0;background:rgba(255,255,255,.08);color:#dbeafe;text-align:left;padding:12px 14px;border-radius:12px}.nav button.active,.nav button:hover{background:white;color:#0f1f4b}.main{padding:24px;min-width:0}.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px}.title h1{margin:0;font-size:30px}.title p{margin:6px 0 0;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:12px;padding:10px 14px;font-weight:700}.btn.primary{background:var(--blue);color:white;border-color:var(--blue)}.btn.danger{background:var(--red);color:white;border-color:var(--red)}.btn.green{background:var(--green);color:white;border-color:var(--green)}.btn.small{padding:7px 10px;border-radius:10px;font-size:12px}.grid{display:grid;gap:16px}.stats{grid-template-columns:repeat(4,minmax(180px,1fr))}.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.stat .label{color:var(--muted);font-size:12px;font-weight:800;text-transform:uppercase}.stat .value{font-size:24px;font-weight:900;margin-top:8px}.stat .sub{color:var(--muted);font-size:12px;margin-top:4px}.tabs{display:none}.tabs.active{display:block}.two{grid-template-columns:1.15fr .85fr}.three{grid-template-columns:repeat(3,1fr)}.form{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.form .full{grid-column:1/-1}label{font-size:12px;font-weight:800;color:#334155;margin-bottom:5px;display:block}input,select,textarea{width:100%;border:1px solid var(--line);background:white;border-radius:11px;padding:10px 11px;color:var(--text)}textarea{min-height:82px;resize:vertical}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;background:white;min-width:900px}th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:top}th{background:#f1f5f9;color:#334155;font-size:12px;text-transform:uppercase}tr:hover td{background:#fafcff}.badge{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:900}.b-green{background:#dcfce7;color:#166534}.b-red{background:#fee2e2;color:#991b1b}.b-yellow{background:#fef9c3;color:#854d0e}.b-blue{background:#dbeafe;color:#1e40af}.b-gray{background:#e2e8f0;color:#334155}.b-purple{background:#ede9fe;color:#5b21b6}.section-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.section-title h2{margin:0;font-size:18px}.muted{color:var(--muted)}.flow{display:flex;flex-direction:column;gap:14px}.node{border:1px solid var(--line);border-left:7px solid var(--blue2);border-radius:14px;background:#fff;padding:14px}.node h3{margin:0 0 6px;font-size:15px}.node .meta{display:flex;gap:6px;flex-wrap:wrap}.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}.alert-list{display:flex;flex-direction:column;gap:10px}.alert{padding:12px;border-radius:12px;border:1px solid var(--line);background:#fff}.alert.red{border-left:6px solid var(--red)}.alert.yellow{border-left:6px solid var(--orange)}.alert.green{border-left:6px solid var(--green)}.hidden{display:none!important}.right{text-align:right}.searchbar{display:grid;grid-template-columns:1fr 170px 170px;gap:10px;margin-bottom:12px}.modal{position:fixed;inset:0;background:rgba(15,23,42,.56);display:flex;align-items:center;justify-content:center;padding:18px;z-index:50}.modal .box{background:white;border-radius:20px;max-width:1000px;width:100%;max-height:92vh;overflow:auto;padding:20px;box-shadow:0 25px 80px rgba(0,0,0,.35)}.modal-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:14px}.print-only{display:none}@media(max-width:1000px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.stats,.two,.three{grid-template-columns:1fr}.searchbar{grid-template-columns:1fr}.form{grid-template-columns:1fr}.main{padding:16px}.top{flex-direction:column}}@media print{.sidebar,.actions,.nav,.no-print,.btn{display:none!important}.app{display:block}.main{padding:0}.card{box-shadow:none;break-inside:avoid}.print-only{display:block}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">Gestão de Patrimônio <small>Espólio, PF, PJ, imóveis, dívidas, contratos e renda</small></div>
+    <div class="nav">
+      <button class="active" data-tab="dashboard">📊 Painel Geral</button>
+      <button data-tab="bens">🏠 Bens / Patrimônios</button>
+      <button data-tab="contratos">📄 Contratos e Rendas</button>
+      <button data-tab="dividas">💸 Dívidas / IPTU / ITR</button>
+      <button data-tab="fluxo">🧭 Fluxo do Patrimônio</button>
+      <button data-tab="relatorios">🖨️ Relatórios</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div class="title"><h1>Sistema de Gestão de Patrimônio</h1><p>Controle por imóvel: matrícula, posse, valor, aluguel, arrendamento, dívidas, documentos e próximos passos.</p></div>
+      <div class="actions no-print">
+        <button class="btn primary" onclick="openAssetModal()">+ Novo patrimônio</button>
+        <button class="btn" onclick="seedExample()">Carregar exemplo do espólio</button>
+        <button class="btn" onclick="exportJSON()">Exportar JSON</button>
+        <label class="btn">Importar JSON<input type="file" accept="application/json" class="hidden" onchange="importJSON(event)"></label>
+        <button class="btn" onclick="window.print()">Imprimir</button>
+      </div>
+    </div>
+
+    <section id="dashboard" class="tabs active">
+      <div class="grid stats" id="stats"></div>
+      <div class="grid two" style="margin-top:16px">
+        <div class="card"><div class="section-title"><h2>🚨 Alertas e próximos passos</h2></div><div id="alerts" class="alert-list"></div></div>
+        <div class="card"><div class="section-title"><h2>📌 Resumo por categoria</h2></div><div id="categorySummary" class="split"></div></div>
+      </div>
+    </section>
+
+    <section id="bens" class="tabs">
+      <div class="card">
+        <div class="section-title"><h2>Lista de patrimônios</h2><button class="btn primary small" onclick="openAssetModal()">+ Adicionar</button></div>
+        <div class="searchbar no-print"><input id="q" placeholder="Buscar por nome, matrícula, cidade..." oninput="renderAssets()"><select id="filterStatus" onchange="renderAssets()"><option value="">Todos status</option><option>Disponível</option><option>Alugado</option><option>Arrendado</option><option>Alugado para terceiros</option><option>Vendido</option><option>Em regularização</option></select><select id="filterOwner" onchange="renderAssets()"><option value="">Todos donos</option><option>Espólio</option><option>Pessoa Física</option><option>Pessoa Jurídica</option></select></div>
+        <div class="table-wrap"><table><thead><tr><th>Patrimônio</th><th>Matrícula / Local</th><th>Status</th><th>Valor</th><th>Renda</th><th>Dívidas</th><th class="no-print">Ações</th></tr></thead><tbody id="assetRows"></tbody></table></div>
+      </div>
+    </section>
+
+    <section id="contratos" class="tabs"><div class="card"><div class="section-title"><h2>Contratos de aluguel, terceiros e arrendamento</h2></div><div class="table-wrap"><table><thead><tr><th>Patrimônio</th><th>Tipo</th><th>Locatário / Arrendatário</th><th>Valor mensal</th><th>Início</th><th>Vencimento</th><th>Observações</th></tr></thead><tbody id="contractRows"></tbody></table></div></div></section>
+
+    <section id="dividas" class="tabs"><div class="card"><div class="section-title"><h2>Dívidas por patrimônio</h2></div><div class="table-wrap"><table><thead><tr><th>Patrimônio</th><th>Tipo</th><th>Status</th><th>Valor</th><th>Vencimento</th><th>Observação</th></tr></thead><tbody id="debtRows"></tbody></table></div></div></section>
+
+    <section id="fluxo" class="tabs"><div class="card"><div class="section-title"><h2>Fluxo visual para entender o patrimônio</h2></div><div id="flow" class="flow"></div></div></section>
+
+    <section id="relatorios" class="tabs"><div class="grid two"><div class="card"><h2>Relatório executivo</h2><div id="report"></div></div><div class="card no-print"><h2>Exportações</h2><p class="muted">Use estes arquivos para enviar ao contador, advogado ou equipe administrativa.</p><button class="btn green" onclick="exportCSV()">Baixar planilha CSV</button><br><br><button class="btn" onclick="copyReport()">Copiar relatório</button></div></div></section>
+  </main>
+</div>
+
+<div id="modal" class="modal hidden"><div class="box"><div class="modal-head"><h2 id="modalTitle">Novo patrimônio</h2><button class="btn" onclick="closeModal()">Fechar</button></div>
+<form id="assetForm" onsubmit="saveAsset(event)" class="form">
+<input type="hidden" id="id">
+<div><label>Nome / Apelido</label><input id="name" required placeholder="Ex: Sala comercial Rua Brasil"></div>
+<div><label>Dono / Regime</label><select id="owner"><option>Espólio</option><option>Pessoa Física</option><option>Pessoa Jurídica</option></select></div>
+<div><label>Tipo</label><select id="type"><option>Imóvel urbano</option><option>Imóvel rural</option><option>Sala comercial</option><option>Lote</option><option>Veículo</option><option>Empresa / quotas</option><option>Outro</option></select></div>
+<div><label>Status</label><select id="status"><option>Disponível</option><option>Alugado</option><option>Alugado para terceiros</option><option>Arrendado</option><option>Vendido</option><option>Em regularização</option></select></div>
+<div><label>Matrícula / Registro</label><input id="registry" placeholder="Matrícula, RENAVAM, CNPJ..."></div>
+<div><label>Cidade / Localização</label><input id="location" placeholder="Cidade, endereço, lote..."></div>
+<div><label>Área / metragem</label><input id="area" placeholder="Ex: 1.000 m² / 159,36 ha"></div>
+<div><label>Valor estimado do patrimônio</label><input id="value" type="number" min="0" step="0.01"></div>
+<div class="full"><label>Descrição do bem</label><textarea id="description" placeholder="O que é, situação física, benfeitorias, observações..."></textarea></div>
+<div><label>Tipo de renda</label><select id="incomeType"><option>Nenhuma</option><option>Aluguel</option><option>Aluguel para terceiros</option><option>Arrendamento</option><option>Venda parcelada</option></select></div>
+<div><label>Valor mensal recebido</label><input id="incomeValue" type="number" min="0" step="0.01"></div>
+<div><label>Locatário / arrendatário</label><input id="tenant"></div>
+<div><label>Vencimento / dia de pagamento</label><input id="payday" placeholder="Ex: dia 10"></div>
+<div><label>Início do contrato</label><input id="contractStart" type="date"></div>
+<div><label>Fim / renovação do contrato</label><input id="contractEnd" type="date"></div>
+<div class="full"><label>Link / local dos documentos</label><input id="docs" placeholder="Drive, pasta física, número do processo..."></div>
+<div><label>Dívida IPTU</label><input id="iptu" type="number" min="0" step="0.01"></div>
+<div><label>Dívida ITR</label><input id="itr" type="number" min="0" step="0.01"></div>
+<div><label>Outras dívidas</label><input id="otherDebt" type="number" min="0" step="0.01"></div>
+<div><label>Status da dívida</label><select id="debtStatus"><option>Sem dívida</option><option>Em dia</option><option>Parcelada</option><option>Em atraso</option><option>Execução fiscal</option><option>Em apuração</option></select></div>
+<div class="full"><label>Observações das dívidas</label><textarea id="debtNotes"></textarea></div>
+<div class="full"><label>Plano de regularização / próximo passo</label><textarea id="nextStep" placeholder="Ex: puxar certidão municipal, negociar IPTU, revisar contrato, atualizar avaliação..."></textarea></div>
+<div class="full actions"><button class="btn primary" type="submit">Salvar patrimônio</button><button class="btn" type="button" onclick="closeModal()">Cancelar</button></div>
+</form></div></div>
+
+<script>
+const KEY='patrimonio_v2_data';
+let data=JSON.parse(localStorage.getItem(KEY)||'[]');
+const fmt=v=>(Number(v)||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const num=v=>Number(v)||0;
+const today=()=>new Date().toISOString().slice(0,10);
+function save(){localStorage.setItem(KEY,JSON.stringify(data));renderAll()}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.tabs').forEach(x=>x.classList.remove('active'));document.getElementById(b.dataset.tab).classList.add('active');renderAll()});
+function openAssetModal(asset){document.getElementById('modal').classList.remove('hidden');document.getElementById('assetForm').reset();document.getElementById('modalTitle').textContent=asset?'Editar patrimônio':'Novo patrimônio';if(asset){for(const [k,v] of Object.entries(asset)){const el=document.getElementById(k);if(el)el.value=v}}}
+function closeModal(){document.getElementById('modal').classList.add('hidden')}
+function formAsset(){let o={};['id','name','owner','type','status','registry','location','area','value','description','incomeType','incomeValue','tenant','payday','contractStart','contractEnd','docs','iptu','itr','otherDebt','debtStatus','debtNotes','nextStep'].forEach(k=>o[k]=document.getElementById(k).value);o.id=o.id||uid();o.value=num(o.value);o.incomeValue=num(o.incomeValue);o.iptu=num(o.iptu);o.itr=num(o.itr);o.otherDebt=num(o.otherDebt);o.updatedAt=today();return o}
+function saveAsset(e){e.preventDefault();const a=formAsset();const ix=data.findIndex(x=>x.id===a.id);if(ix>=0)data[ix]=a;else data.unshift(a);closeModal();save()}
+function editAsset(id){openAssetModal(data.find(x=>x.id===id))}
+function delAsset(id){if(confirm('Excluir este patrimônio?')){data=data.filter(x=>x.id!==id);save()}}
+function debtTotal(a){return num(a.iptu)+num(a.itr)+num(a.otherDebt)}
+function renderStats(){const total=data.reduce((s,a)=>s+num(a.value),0), renda=data.reduce((s,a)=>s+num(a.incomeValue),0), div=data.reduce((s,a)=>s+debtTotal(a),0), ativos=data.length;const cap=total?((renda*12)/total*100):0;document.getElementById('stats').innerHTML=[['Valor total estimado',fmt(total),ativos+' patrimônios cadastrados','--blue2'],['Renda mensal',fmt(renda),'Cap rate: '+cap.toFixed(2)+'% a.a.','--green'],['Dívidas mapeadas',fmt(div),'IPTU + ITR + outras','--red'],['Saldo patrimonial',fmt(total-div),'Valor menos dívidas','--purple']].map(s=>`<div class="card stat" style="border-left:6px solid var(${s[3]})"><div class="label">${s[0]}</div><div class="value">${s[1]}</div><div class="sub">${s[2]}</div></div>`).join('')}
+function badgeStatus(s){let c=s.includes('atras')||s.includes('Execução')?'b-red':s.includes('Alugado')||s.includes('Arrendado')?'b-green':s.includes('regular')||s.includes('Parcel')?'b-yellow':s.includes('Vendido')?'b-gray':'b-blue';return `<span class="badge ${c}">${s}</span>`}
+function renderAssets(){const q=(document.getElementById('q')?.value||'').toLowerCase(), fs=document.getElementById('filterStatus')?.value||'', fo=document.getElementById('filterOwner')?.value||'';const arr=data.filter(a=>(!fs||a.status===fs)&&(!fo||a.owner===fo)&&(!q||JSON.stringify(a).toLowerCase().includes(q)));document.getElementById('assetRows').innerHTML=arr.map(a=>`<tr><td><b>${a.name}</b><br><span class="muted">${a.type} · ${a.owner}</span></td><td>${a.registry||'N/D'}<br><span class="muted">${a.location||''} ${a.area?'· '+a.area:''}</span></td><td>${badgeStatus(a.status)}</td><td>${fmt(a.value)}</td><td>${fmt(a.incomeValue)}<br><span class="muted">${a.incomeType}</span></td><td>${fmt(debtTotal(a))}<br><span class="muted">${a.debtStatus}</span></td><td class="no-print"><button class="btn small" onclick="editAsset('${a.id}')">Editar</button> <button class="btn danger small" onclick="delAsset('${a.id}')">Excluir</button></td></tr>`).join('')||'<tr><td colspan="7" class="muted">Nenhum patrimônio encontrado.</td></tr>'}
+function renderContracts(){const arr=data.filter(a=>num(a.incomeValue)>0||a.incomeType!=='Nenhuma');document.getElementById('contractRows').innerHTML=arr.map(a=>`<tr><td><b>${a.name}</b><br><span class="muted">${a.location||''}</span></td><td>${a.incomeType}</td><td>${a.tenant||'N/D'}</td><td>${fmt(a.incomeValue)}</td><td>${a.contractStart||'N/D'}</td><td>${a.contractEnd||'N/D'}</td><td>${a.payday||''} ${a.docs?'<br>Docs: '+a.docs:''}</td></tr>`).join('')||'<tr><td colspan="7" class="muted">Sem contratos/rendas cadastrados.</td></tr>'}
+function renderDebts(){let rows=[];data.forEach(a=>{[['IPTU',a.iptu],['ITR',a.itr],['Outras',a.otherDebt]].forEach(d=>{if(num(d[1])>0)rows.push(`<tr><td><b>${a.name}</b></td><td>${d[0]}</td><td>${badgeStatus(a.debtStatus)}</td><td>${fmt(d[1])}</td><td>Consultar</td><td>${a.debtNotes||''}</td></tr>`)})});document.getElementById('debtRows').innerHTML=rows.join('')||'<tr><td colspan="6" class="muted">Nenhuma dívida cadastrada.</td></tr>'}
+function renderAlerts(){let alerts=[];data.forEach(a=>{if(!a.registry)alerts.push(['red',a.name,'Sem matrícula/registro informado.']);if(debtTotal(a)>0&&(a.debtStatus.includes('atras')||a.debtStatus.includes('Execução')))alerts.push(['red',a.name,'Dívida crítica: '+fmt(debtTotal(a))+' em '+a.debtStatus+'.']);if(a.contractEnd){const days=Math.ceil((new Date(a.contractEnd)-new Date())/86400000);if(days>=0&&days<=60)alerts.push(['yellow',a.name,'Contrato vence/renova em '+days+' dias.']);}if(a.nextStep)alerts.push(['green',a.name,a.nextStep]);});document.getElementById('alerts').innerHTML=alerts.slice(0,12).map(x=>`<div class="alert ${x[0]}"><b>${x[1]}</b><br><span class="muted">${x[2]}</span></div>`).join('')||'<div class="alert green">✅ Sem alertas imediatos.</div>'}
+function renderCategory(){const groups={};data.forEach(a=>{groups[a.status]=(groups[a.status]||0)+1});document.getElementById('categorySummary').innerHTML=Object.entries(groups).map(([k,v])=>`<div class="alert"><b>${k}</b><br><span class="muted">${v} patrimônio(s)</span></div>`).join('')||'<p class="muted">Cadastre patrimônios para ver o resumo.</p>'}
+function renderFlow(){document.getElementById('flow').innerHTML=data.map(a=>`<div class="node"><h3>${a.name}</h3><div class="meta">${badgeStatus(a.owner)} ${badgeStatus(a.status)} ${badgeStatus(a.debtStatus)}</div><p class="muted"><b>Registro:</b> ${a.registry||'N/D'} · <b>Valor:</b> ${fmt(a.value)} · <b>Renda:</b> ${fmt(a.incomeValue)} · <b>Dívidas:</b> ${fmt(debtTotal(a))}</p><p>${a.description||''}</p><p><b>Próximo passo:</b> ${a.nextStep||'Não definido.'}</p></div>`).join('')||'<p class="muted">Cadastre patrimônios para montar o fluxo.</p>'}
+function renderReport(){const total=data.reduce((s,a)=>s+num(a.value),0), renda=data.reduce((s,a)=>s+num(a.incomeValue),0), div=data.reduce((s,a)=>s+debtTotal(a),0);document.getElementById('report').innerHTML=`<p><b>Total de patrimônios:</b> ${data.length}</p><p><b>Valor total estimado:</b> ${fmt(total)}</p><p><b>Renda mensal estimada:</b> ${fmt(renda)}</p><p><b>Dívidas mapeadas:</b> ${fmt(div)}</p><p><b>Saldo líquido estimado:</b> ${fmt(total-div)}</p><hr>${data.map(a=>`<p><b>${a.name}</b><br>Status: ${a.status}. Registro: ${a.registry||'N/D'}. Valor: ${fmt(a.value)}. Renda: ${fmt(a.incomeValue)}. Dívidas: ${fmt(debtTotal(a))}. Próximo passo: ${a.nextStep||'não definido'}.</p>`).join('')}`}
+function renderAll(){renderStats();renderAlerts();renderCategory();renderAssets();renderContracts();renderDebts();renderFlow();renderReport()}
+function exportJSON(){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});download(blob,'patrimonio-backup.json')}
+function importJSON(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{data=JSON.parse(r.result);save()};r.readAsText(f)}
+function exportCSV(){const cols=['name','owner','type','status','registry','location','area','value','incomeType','incomeValue','tenant','iptu','itr','otherDebt','debtStatus','nextStep'];const csv=[cols.join(';')].concat(data.map(a=>cols.map(c=>'"'+String(a[c]??'').replaceAll('"','""')+'"').join(';'))).join('\n');download(new Blob([csv],{type:'text/csv;charset=utf-8'}),'patrimonio.csv')}
+function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href)}
+function copyReport(){navigator.clipboard.writeText(document.getElementById('report').innerText);alert('Relatório copiado.')}
+function seedExample(){if(data.length&&!confirm('Adicionar exemplos ao cadastro atual?'))return;data=[
+{id:uid(),name:'Sala Comercial Rua Brasil 1599',owner:'Espólio',type:'Sala comercial',status:'Alugado',registry:'Transcrição 33.965 - CRI 1º Ofício',location:'Campo Mourão/PR',area:'1.000 m²',value:0,description:'Carta de data de terras com benfeitorias.',incomeType:'Aluguel',incomeValue:2200,tenant:'Locatário a confirmar',payday:'Dia 10',contractStart:'',contractEnd:'',docs:'',iptu:220000,itr:0,otherDebt:0,debtStatus:'Execução fiscal',debtNotes:'Dívida municipal indicada no inventário; atualizar extrato.',nextStep:'Puxar extrato atualizado do IPTU e separar o que está em execução fiscal.'},
+{id:uid(),name:'Lote 17 - Colônia Cantu / Pitanga',owner:'Espólio',type:'Imóvel rural',status:'Arrendado',registry:'Matrícula 16.516 - CRI Pitanga',location:'Pitanga/PR',area:'1/8 de 159,36 ha',value:1200000,description:'Parte do lote rural com benfeitorias.',incomeType:'Arrendamento',incomeValue:0,tenant:'Arrendatário a confirmar',payday:'',contractStart:'',contractEnd:'',docs:'',iptu:0,itr:0,otherDebt:0,debtStatus:'Em apuração',debtNotes:'Verificar ITR/CCIR/CAR.',nextStep:'Confirmar contrato de arrendamento, ITR, CCIR, CAR e renda anual.'},
+{id:uid(),name:'Apartamento Balneário Camboriú',owner:'Espólio',type:'Imóvel urbano',status:'Em regularização',registry:'Matrículas 46.711, 46.712 e 46.713',location:'Av. Brasil, 1730 - Balneário Camboriú/SC',area:'1/3 do apartamento 10',value:0,description:'Condomínio Edifício Trude, apartamento 10.',incomeType:'Nenhuma',incomeValue:0,tenant:'',payday:'',contractStart:'',contractEnd:'',docs:'',iptu:0,itr:0,otherDebt:0,debtStatus:'Em apuração',debtNotes:'Verificar IPTU, condomínio e titularidade.',nextStep:'Solicitar certidões atualizadas das matrículas e débitos condominiais.'}
+].concat(data);save()}
+renderAll();
+</script>
+</body>
+</html>
